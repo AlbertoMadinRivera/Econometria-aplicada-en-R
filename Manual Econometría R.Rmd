@@ -1,0 +1,143 @@
+---
+title: "**MANUAL: Econometría aplicada utilizando `R`**"
+author:
+- Madin Rivera, Alberto.
+date: "`r format(Sys.time(), '%b %d, %Y')`"
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyhf{}
+- \fancyhead[RE,LO]{Econometría en R}
+- \fancyfoot[CE,CO]{\leftmark}
+- \fancyfoot[LE,RO]{}
+- \fancyfoot[LE,RO]{\thepage}
+- \usepackage{titling}
+- \pretitle{\begin{center}
+- \includegraphics[]{Portada_.png}\LARGE\\}
+- \posttitle{\end{center}}
+output:
+  pdf_document:
+    toc: true
+fontsize: 12pt
+lang: es-MX
+documentclass: book
+classoptions: 4paper
+csl: acm-sig-proceedings-long-author-list-csl
+geometry: margin = 2.5cm
+urlcolor: #3498DB
+linkcolor: #3498DB
+link-citations: yes
+---
+
+Este manual es una readaptación del texto original del libro creado por los Coordinadores[^a]:
+
+* Luis Quintana Romero
+* Miguel Ángel Mendoza González
+
+[^a]:Este manual tiene Prohibida la reproducción total o parcial por cualquier medio sin la autorización escrita del titular de los derechos patrimoniales. El libro electrónico *Econometría aplicada utilizando R* fue financiado con recursos PAPIME de la Dirección General de Asuntos del Personal Académico (DGAPAPA) de la Universidad Nacional Autónoma De México: PE302513 *Libro electrónico y complementos didácticos en medios computacionales, para el fortalecimiento en la enseñanza de la econometría*. Se encuentra disponible de manera libre en el sitio: [Econometría aplicada Utilizando `R`](http://saree.com.mx/econometriaR/)
+
+Docéntes a los cuáles también se les debe de reconocer y dar el agradecimiento total son:
+
+* Javier Galán Figueroa
+* Jorgue Feregringo Feregringo
+* Lucía A. Ruíz Galindo
+* Roldan Andrés Rosales
+
+Esto es debido a que el crédito original, del cuál se readaptó este manual es gracias a todos ellos.
+
+# INTRODUCCIÓN
+
+\newpage
+
+En este libro de texto los usuarios encontrarán una vía práctica para mejorar su comprensión de la econometría, al utilizar aplicaciones a su realidad social, emplear las fuentes de información disponibles en el país y disponer de un formato tecnológico en el que pueden aplicar los conocimientos adquiridos, poner en práctica propuestas propias y realizar trabajos de investigación por su cuenta, haciendo uso de medios tecnológicos de uso masivo.
+
+Los capítulos de este libro de texto tienen como eje común la aceptaci´ón de que en los últimos veinte años se ha dado una revolución en las técnicas econométricas y en sus aplicaciones. Es buena parte estos cambios, provienen del reconocimiento de que el paradigma clásico, que actualmente aún predomina en la mayoría de los libros de texto, fue sustentado en supuestos muy discutiples. Los cuestionamientos a la metodología econométrica clásica se desprenden del trabajo de Box y Jenkins (1970) en **series de tiempo**; Davidson, Hendrym Srba y Yeo (1978) que desarrollaron la idea de **modelos de corrección de error** (MCE) y que actualmente su propuesta se reconoce como metodología LSE (London School of Economics) o DHDY (por las iniciales de sus autores); los numerosos trabajos de Engle y Granger a partir de los años ochenta en donde se vincula el concepto de cointegración a los MCE; el trabajo del mismo Engle (1982) que dio lugar a los modelos ARCH (heterocedasticidad condicional autorregresiva), los cuáles han tenido un gran impacto en el análisis econométrico aplicado al mundo de las finanzas; los desarrollos de finales de los años noventa en el campo de la Econometría Espacial impulsados por Anselin (1988) y; un sin número de artículos que inspirados en estos trabajos pioneros han cambiado la forma de  pensar y hacer econometría en la actualidad.
+
+El reto de este libro es ofrecer a los lectores un enfoque aplicado con el fin de comprender esos nuevos desarrollos en el campo de la econometría y proporcionarles las herramientas teóricas y las técnicas necesarias para su aplicación al estudio de la realidad económica mexicana.
+
+Los libros de texto de econometría que se están publicando recientemente, tanto en Europa como en los Estados Unidos, se vinculas a paquetes computacionales de elevado costo comercial, como lo son: `EViews`, `STATA` y `Microfit`, entre otros. Sin embargo, actualmente se ha desarrollado software de uso libre que ha adquirido una gran difusión mundial (como `Python` o `R`). `R` es uno de ellos, el cual se ha venido utilizando para la modelación econométrica con mucho éxito.
+
+Por tal razón, el presente libro de texto de econometría tiene la peculiaridad de  que utiliza ampliamente los desarrollos disponibles libremente en `R`, además de priorizar la aplicación de los temas que se desarrollan en sus diferentes capítulos. En cada uno de los capítulos del libro se muestran las bases del método o técnica econométrica de que se trate y se aplica inmediatamente al estudio de algún tema relevante de la economía mexicana actual o de otros países.
+
+Los capítulos que conforman este libro presentan un nivel introductorio de cada uno de los temas que se abordan y se priorizan las aplicaciones en `R`, por lo cual debe considerarse como un libro de econometría básica aplicada. Se ha dejado fuera del texto el tema de los modelos de **series de tiempo**, ya que por la amplitud de ese tema se requiere de un libro adicional, mismo queya se encuentra en proceso de preparación con el fin de complementar a la presente obra.
+
+Se debe de señalar que este libro de texto forma parte de la producción y edición de tres materiales educativos en el campo de la econometría. Los materiales consisten de un libro electrónico (ebook) de texto, un curso en línea y aplicaciones electrónicas didácticas.
+
+Estos materiales están destinados a profesores y alumnos. En el caso de los profesores es pisible emplear el texto electrónico y el curso en línea para cursos de actualizaci+on del personal docente en econometría. Los profesores pueden utilizar los materiales en la impartición de cursos a nivel licenciatura, ya que los materiales se diseñan de acuerdo a los contenidos de los programas curriculares de econometría y de métodos de pronóstico en diferentes licenciaturas, resolviendo con ello el déficit existente de material actualizado, en español, en soportes electrónicos y con aplicaciones a la realidad del país.
+
+La propuesta es original en la medida en que atiende tres problemas de la enseñanza de la econometría; contar con libros de texto actualizados en formatos tecnológicamente avanzados y en español, incorporar un curso en línea que tenga la virtud de promover el auto aprendizaje y sea complemento de los cursos presenciales, además de proporcionar aplicaciones en formatos tecnológicos que se han difundido ampliamente entre los alumnos.
+
+Los materiales vinculados a este libro de texto se encuentra disponible de forma libre en la página de la [UNAM](www.saree.com.mx/unam). En este sitio, el interesado en el estudio de la econometría, encontrará este libro en formato electrónico, presentaciones en PowerPoint para cada capítulo, una grabación de video con los procedimientos para aplicar en `R` lo aprendido en el capítulo, una guía metodológica en MOODLE para avanzar en el estudio de los capítulos y, finalmente, un par de aplicaciones electrónicas para comprender la forma en la que se estiman regresiónes.
+
+El libro se integra por dieciséis capítulos cuyo contenido se resumen en la siguiente tabla.
+
+\newpage
+
+| **CAPÍTULO** | **CONTENIDO** | 
+|-----------|-----------|
+|**CAPÍTULO 1.** |Se introduce al lector en la metodología econométrica moderna y en el uso del R|
+|**CAPÍTULO 2.** |Se muestra el método de mínimos cuadrados ordinarios en su versión matricial con ejemplos de análisis de la deuda pública en México|
+|**CAPÍTULO 3.** |Se desarrolla el modelo de regresión múltiple y la forma en la cual se evalúan sus resultados. Se realizan aplicaciones en R al análisis de las ventas al menudeo en México|
+|**CAPÍTULO 4.** |Se presentan los métodos utilizados para determinar si el modelo econométrico fue especificado incorrectamente debido a un planteamiento no apropiado de la forma funcional. Se realizan aplicaciones en R con el análisis de la demanda de gasolina en los Estados Unidos|
+|**CAPÍTULO 5.** |En este capítulo se estudia la importancia e implicaciones del supuesto de normalidad en el modelo de regresión lineal y de manera específica en la inferencia estadística de sus parámetros. Se realizan aplicaciones en R de la prueba Jarque-Bera en un modelo de la demanda de gasolina en los Estados Unidos|
+|**CAPÍTULO 6.** |Con base en los determinantes del consumo en México se exploran las diferentes pruebas alternativas disponibles en R para detectar y corregir el problema de la multicolinealidad en los modelos econométricos|
+|**CAPÍTULO 7.** |Se explican las consecuencias del problema de heterocedasticidad en los modelos econométricos y haciendo uso de un ejemplo sobre distribución de cerveza se muestran las alternativas disponibles en R para realizar pruebas de detección de ese problema|
+|**CAPÍTULO 8.** |La autocorrelación serial y sus consecuencias es analizada con base en el estudio de las tasas de interés en México. Utilizando R se muestran las pruebas para detectar este problema y las alternativas para su solución|
+|**CAPÍTULO 9.** |En este capítulo se aborda uno de los temas más relevantes de la metodología econométrica moderna que es el de identificar el orden de integración de las variables utilizadas en los modelos econométricos. Con base en el R se realizan pruebas de raíz unitaria utilizando como ejemplo el análisis del Producto Interno Bruto de México|
+|**CAPÍTULO 10.** |Los resultados del capítulo anterior se extienden al estudio de los procesos de cointegración entre las variables del modelo econométrico utilizando en R las técnicas de Engle-Granger y de Johansen, ejemplificándolas con ayuda del estudio de la relación de largo plazo entre el consumo y el ingreso en México|
+|**CAPÍTULO 11.** |Se destaca el uso de modelos VAR para el análisis de la política económica tomando como caso el estudio de la inflación y la oferta monetaria. Se presentan las diferentes rutinas disponibles en R para estimar y realizar pruebas en los modelos VAR|
+|**CAPÍTULO 12.** |Los modelos ARCH utilizados para el análisis de la volatilidad y el riesgo son ejemplificados en R con base en el análisis de los procesos inflacionarios en México|
+|**CAPÍTULO 13.** |Se desarrollan los modelos Probit y Logit aplicados a casos en los que la variable dependiente es binaria o cualitativa. Con base en el estudio de la diferenciación salarial en México se muestran las rutinas disponibles en R para estimar y realizar pruebas en ese tipo de modelos econométricos|
+|**CAPÍTULO 14.** |Cuando el fenómeno económico. que se está analizando tiene un componente de desagregación de corte trasversal o sección cruzada y otro de series de tiempo se aplican modelos de panel. En este capítulo se estudian las técnicas de panel utilizando R en el análisis de la inflación y el desempleo en México|
+|**CAPÍTULO 15.** |Uno de los desarrollos más recientes de la econometría es la econometría espacial. En este capítulo se presenta la forma en la que se deben especificar y estimar este tipo de modelos en R y se ejemplifica su uso con el estudio del empleo y el capital humano en la zona centro de México|
+|**CAPÍTULO 16.** |Finalmente, se incluye un capítulo opcional en el que se realiza un breve repaso de los elementos básicos de estadística, probabilidad y algebra lineal indispensables para comprender la base matemática de los diferentes capítulos del libro|{width=20%}
+
+\newpage
+
+Este libro y los materiales didácticos adicionales que lo acompañan contaron con el apoyo financiero de la Dirección General de Asuntos del Personal Académico  de la UNAM a través del proyecto PAPIME PE302513 *“Libro electrónico y complementos didácticos en medios computacionales, para el fortalecimiento en la enseñanza de la econometría”*.
+
+Los coordinadores del libro agradecen a los profesores José A. Huitrón, Jaime Prudencio, Aída Villalobos y Ángel Reynoso por su apoyo en la revisión de los capítulos y en el diseño de los apoyos didácticos que acompañan al libro. También agradecemos a los alumnos y becarios del proyecto PAPIME; Arturo Abraham Salas, Mónica González, Paola Orozco, Ana Isabel Hernández, Coral Gutiérrez, Eddy Michell López, Jarett Fernando González, Mónica Patricia Hernández, Samarkanda Norma Bustamante, Nataly Hernández, Sarahí Aldana, Brenda Mireya González, Alejandro Corzo, Damaris Susana Mendoza, Nancy Nayeli Morales, Claudia Torres, Edelmar Morales y Carolina Guadalupe Victoria. Todas y todos ellos hicieron una excelente labor de apoyo para el buen éxito del proyecto.
+
+# CAPÍTULO 1: LA ECONOMETRÍA. SUS USOS Y APLICACIONES EN `R`
+
+* Por Luis Quintana Romero y Miguel Ángel Mendoza
+
+\newpage
+
+## 1. ¿QUÉ ES LA ECONOMETRÍA?
+
+Hoy en día la econometría se ha difundido ampliamente entre quienes estudian y buscan realizar aplicaciones de la economía. En general, cualquier licenciatura en economía cuenta, entre su currículo, con uno o más cursos de econometría; hoy en día es usual que la econometría se enseñe con la misma relevancia que se le da a los cursos de microeconomía y macroeconomía. No hay posgrado en economía que deje de incorporar el estudio de la econometría como una disciplina fundamental. Incluso, es posible aseverar que en disciplinas distintas a la economía, como en las matemáticas, algunas ingenierías, la sociología y en la psicología, sus estudiantes reciben algún curso de econometría.
+
+No sólo en la formación académica la econometría está presente, en la vida laboral se realizan todos los días aplicaciones econométricas. En las oficinas gubernamentales se emplean modelos econométricos para realizar pronósticos de variables económicas. En empresas privadas se utilizan algunas técnicas econométricas para proyectar al futuro variables como ventas, precios y demanda, entre otras variables. En el mercado existen numerosos servicios de consultoría que han hecho de la econometría un negocio al ofrecer la venta de pronósticos generados a través de modelos econométricos.
+
+En el mundo de la investigación científica la econometría es un ingrediente indispensable. Diariamente se publican en todo el orbe una gran cantidad de artículos de economía en revistas especializadas, la evidencia empírica que aportan, generalmente, se sustenta en algún modelo econométrico.
+
+La importancia de esta disciplina es tal que basta escribir en un buscador de internet la palabra *"econometrics"*, para que nos arroje más de nueve millones de referencias.
+
+Con la econometría se busca comprender fenómenos como el de las crisis, identificar sus causas, valorar sus consecuencias futuras y proponer medidas de política para enfrentarlas. Para ello, la econometría utiliza modelos, con estos se busca representar de forma simplificada a los principales factores causales de un problema de interés. La especificación y estimación de esos modelos requiere del conocimiento de teorías económicas, para poder establecer relaciones entre las variables, y de datos, para poder realizar mediciones de dichas relaciones.
+
+No existe una definición única y generalmente aceptable de lo qué es la econometría. Debido a que en ella concurren una gran diversidad de perspectivas teóricas y metodológicas, existen, en consecuencia, diferentes posturas sobre su significado.
+
+A diferencia de lo que ocurre hoy en día, en los años treinta, época en la que se 
+institucionaliza la econometría, existía cierto consenso metodológico. A ese consenso se le identifica como la *"metodología de libro de texto"* y su definición de econometría era la siguiente:
+
+>*"La aplicación de métodos estadísticos y matemáticos al análisis de los datos económicos, con el propósito de dar un contenido empírico a las teorías económicas y verificarlas o refutarlas" (Maddala, 1996, p.1)*
+
+Bajo esta última conceptualización la econometría aparece, por un lado, como un mero instrumental técnico al ser la aplicación de métodos matemáticos y estadísticos. Por otro lado, es vista prácticamente como la piedra filosofal, al darle el papel de criterio último de verdad al ser la vía para verificar o refutar teorías. El econometrista aparece en esa definición como un técnico, cuyo único fin es intentar medir lo que la teoría económica ha postulado.
+
+Esta visión de la econometría se ha transformado en los últimos años, en ese sentido vale la pena retomar la definición proporcionada por Aris Spanos:
+
+>*"La econometría se interesa por el estudio sistemático de fenómenos económicos utilizando datos observables" (Spanos, 1996, p.3).*
+
+Este es un enfoque moderno con el cual se coincide en este libro, lo que hace a la econometría diferente de otros campos de la economía es la utilización de datos observables. Por lo tanto, la econometría tiene una perspectiva empírica, no se reduce a la teoría y necesariamente hace uso de datos, los cuales no son experimentales sino que son resultado del funcionamiento de la actividad económica. El papel del econometrista no se reduce a medir lo que la teoría económica establece, es un científico social que, a través de un método científico, emprende el estudio de fenómenos económicos. Por lo tanto, no es un observador pasivo de la teoría, al contrario, es capaz de contribuir a la teoría.
+
+La econometría que utilizamos hoy en día se ha ido transformando y modernizando, hasta convertirse en una de las herramientas más potentes a disposición de los economistas y principalmente del análisis empírico de problemas económicos. Esta evolución de la disciplina la sintetiza perfectamente Spanos:
+
+>*"En el amanecer del siglo veintiuno, la econometría se ha desarrollado desde los modestos orígenes del "ajuste de curvas" por mínimos cuadrados en los inicios del siglo veinte, hasta un poderoso arreglo de herramientas estadísticas para modelar todo tipo de datos, desde las tradicionales series de tiempo a las secciones cruzadas y los datos de panel." (Spanos, 2006, p. 5)*
+
+## 2. LA METODOLOGÍA ECONOMÉTRICA
+
+En el apartado previo se estableció que la econometría estudia de forma sistemática los fenómenos económicos. Por lo tanto, utiliza una metodología científica para llevar a cabo esta tarea. Aunque la metodología econométrica no tiene aún un lugar relevante en la discusión de esta disciplina, es un aspecto que debe ser considerado esencial, por ello resulta muy atinada la afirmación de Spanos (2006) en el sentido de que sin fundamentos metodológicos para guiar la práctica econométrica, no es posible que se logre acumular conocimiento genuino a través de la modelación empírica.
+
+En la medida en que existe una diversidad metodológica en la econometría, resulta difícil establecer un proceso metodológico único. Sin embargo, en términos generales, en el cuadro siguiente se pueden observar las características básicas de los principales enfoques metodológicos, los cuales se distinguen por el papel que le asignan a la teoría y del grado de independencia que le dan a la teoría para la caracterización de los datos Hoover (2006).
+
